@@ -10,6 +10,7 @@ public class MapPresenter : MonoBehaviour
     public Grid grid;
     private List<Tilemap> _tilemaps;
     private List<Tilemap> _collision;
+    private List<Tilemap> _water;
     private Tilemap _baseMap;
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class MapPresenter : MonoBehaviour
         _tilemaps = grid.GetComponentsInChildren<Tilemap>().ToList();
         _collision = _tilemaps.Where(x => x.tag == "collision").ToList();
         _baseMap = _tilemaps.SingleOrDefault(x => x.tag == "base layer");
+        _water = _tilemaps.Where(x => x.tag == "water").ToList();
 
         BoundsInt entireBounds = _baseMap.cellBounds;
 
@@ -59,7 +61,12 @@ public class MapPresenter : MonoBehaviour
         Vector3Int v3int = new Vector3Int((int)coordinates.x, (int)coordinates.y-1, (int)coordinates.z);
         bool result = false;
 
+        // handling collision with collision layer
         result = _collision.Any(layer => layer.HasTile(v3int));
+
+        // handling water collision (allow to pass if there is a tile there in basemap, or if they have a special "walkwater" flag, using a specific spriteset or something)
+        result = result == false && _water.Any(layer => layer.HasTile(v3int)) && !_baseMap.HasTile(v3int) ? true: false;
+
         return result;
     }
 }
