@@ -7,7 +7,7 @@ using System;
 using Assets.Code.Models.Events;
 using Assets.Code.Models;
 
-public class CharacterInteractionTalk : CharacterInteraction
+public class CharacterInteractionTalk : CharacterInteractionLinked
 {
 
     [Inject]
@@ -15,17 +15,15 @@ public class CharacterInteractionTalk : CharacterInteraction
     public string[] TalkText = new string[] { };
     public string Name;
     private Queue<string> _talkText = new Queue<string>();
-
-    private ISubject<DialogueEvent> _events = new Subject<DialogueEvent>();
-    private ISubject<CharacterInteractionEvent> _characterInteractionEvents = new Subject<CharacterInteractionEvent>();
-    public IObserver<DialogueEvent> EventsObserver => _events;
-    public IObservable<CharacterInteractionEvent> Events => _characterInteractionEvents;
+    private ISubject<DialogueEvent> _dialogueEvents = new Subject<DialogueEvent>();
+    public IObserver<DialogueEvent> DialogueEventsObserver => _dialogueEvents;
 
     [Inject]
     public void Initialize(Dialogue dialogue)
     {
         Events.Subscribe(dialogue.EventObserver);
         InitializeQueue();
+        SetupLinkedInteraction();
     }
     
     private void InitializeQueue()

@@ -65,7 +65,7 @@ public class MapPresenter : MonoBehaviour
         result = _collision.Any(layer => layer.HasTile(v3int));
 
         // handling water collision (allow to pass if there is a tile there in basemap, or if they have a special "walkwater" flag, using a specific spriteset or something)
-        result = result == false && _water.Any(layer => layer.HasTile(v3int)) && !_baseMap.HasTile(v3int) ? true: false;
+        result = result? result: result == false && _water.Any(layer => layer.HasTile(v3int)) && !_baseMap.HasTile(v3int) ? true: false;
 
         return result;
     }
