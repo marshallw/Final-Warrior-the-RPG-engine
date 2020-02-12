@@ -7,7 +7,7 @@ using System;
 using Assets.Code.Models.Events;
 using Assets.Code.Models;
 
-public class CharacterInteractionTalk : CharacterInteractionLinked
+public class CharacterInteractionTalk : CharacterInteraction
 {
 
     [Inject]
@@ -23,7 +23,6 @@ public class CharacterInteractionTalk : CharacterInteractionLinked
     {
         Events.Subscribe(dialogue.EventObserver);
         InitializeQueue();
-        SetupLinkedInteraction();
     }
     
     private void InitializeQueue()

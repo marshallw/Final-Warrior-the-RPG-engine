@@ -5,11 +5,17 @@ using Zenject;
 using UniRx;
 using System;
 using Assets.Code.Models;
+using Assets.Code.Models.Events;
 
 public class NPC : Character
 {
     public AI movementAi { get; set; }
     public CharacterInteraction Interaction { get; set; }
+    private CharacterInteraction _currentInteraction { get; set; }
+    private IDisposable _currentInteractionSubscription;
+    private ISubject<CharacterInteractionEvent> _interactionEvents = new Subject<CharacterInteractionEvent>();
+    private IObserver<CharacterInteractionEvent> _interactionEventObserver => _interactionEvents;
+
 
     [Inject]
     public GameState _gameState { get; private set; }
@@ -27,6 +33,7 @@ public class NPC : Character
             .Select(deltaTime => TimeSpan.FromSeconds(deltaTime))
             .Subscribe(deltaTimespan => GetNextMovement(deltaTimespan));
     }
+
     public void GetNextMovement(TimeSpan deltaTime)
     {
         if (movementAi != null && !Mover.IsMoving())
@@ -40,7 +47,29 @@ public class NPC : Character
     public void Interact(Vector3 sourceCoordinates)
     {
         SetDirection(GetDirection(sourceCoordinates - coordinates));
-        Interaction?.Interact();
-        Debug.Log("In interaction function");
+        _currentInteraction?.Interact();
+    }
+
+    public void GotoToNextInteraction()
+    {
+        if (_currentInteraction == null)
+        {
+            _currentInteraction = Interaction;
+        }
+        else
+        {
+            _currentInteraction = _currentInteraction.NextInteraction;
+            _currentInteraction?.Interact();
+        }
+    }
+    public void SubscribeToInteractionEvents(CharacterInteraction interaction)
+    {
+        _currentInteractionSubscription?.Dispose();
+        if (interaction != null)
+        {
+            _currentInteractionSubscription = interaction.Events.Subscribe(_interactionEventObserver);
+            _interactionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
+                .Subscribe(_ => GotoToNextInteraction());
+        }
     }
 }

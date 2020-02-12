@@ -13,4 +13,5 @@ public abstract class CharacterInteraction: MonoBehaviour
     public IObservable<CharacterInteractionEvent> Events => _characterInteractionEvents;
     public IObserver<CharacterInteractionEvent> CharacterInteractionEventsOberver => _characterInteractionEvents;
     public abstract void Interact();
+    public CharacterInteraction NextInteraction;
 }

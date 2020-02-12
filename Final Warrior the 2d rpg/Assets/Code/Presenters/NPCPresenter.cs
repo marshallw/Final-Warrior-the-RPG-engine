@@ -33,6 +33,8 @@ public class NPCPresenter : CharacterPresenter
         if (characterInteraction != null)
         {
             npc.Interaction = characterInteraction;
+            npc.GotoToNextInteraction();
+            npc.SubscribeToInteractionEvents(npc.Interaction);
         }
 
         npcCollision.AddNpctoNpcCollision(npc);
