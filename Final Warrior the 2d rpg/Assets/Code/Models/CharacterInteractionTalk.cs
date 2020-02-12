@@ -49,9 +49,10 @@ public class CharacterInteractionTalk : CharacterInteraction
         else
         {
             InitializeQueue();
-            _characterInteractionEvents.OnNext(new CharacterInteractionEndedEvent());
             _gameState.currentState = PossibleGameStates.Map;
+            _characterInteractionEvents.OnNext(new CharacterInteractionEndedEvent());
+
         }
-        
+
     }
 }

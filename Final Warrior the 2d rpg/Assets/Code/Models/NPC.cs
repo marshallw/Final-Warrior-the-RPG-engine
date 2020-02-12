@@ -6,6 +6,7 @@ using UniRx;
 using System;
 using Assets.Code.Models;
 using Assets.Code.Models.Events;
+using System.Threading;
 
 public class NPC : Character
 {
