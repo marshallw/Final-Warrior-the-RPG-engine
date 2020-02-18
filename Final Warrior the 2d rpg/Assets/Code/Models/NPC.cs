@@ -66,24 +66,26 @@ public class NPC : Character
             _currentInteraction = _currentInteraction.NextInteraction;
         }
 
-        SubscribeToInteractionEvents(_currentInteraction);
         _currentInteraction?.Interact();
     }
 
     public void InitializeInteractions()
     {
         _currentInteraction = Interaction;
-        SubscribeToInteractionEvents(_currentInteraction);
+        var interaction = Interaction;
+        while(interaction != null)
+        {
+            SubscribeToInteractionEvents(interaction);
+            interaction = interaction.NextInteraction;
+        }
+        _interactionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
+    .Subscribe(_ => GotoToNextInteraction());
     }
     public void SubscribeToInteractionEvents(CharacterInteraction interaction)
     {
-        //_currentInteractionSubscription?.Dispose();
         if (interaction != null)
         {
-            _currentInteractionSubscription = interaction.Events.Subscribe(_interactionEventObserver);
-            _interactionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
-                .Take(1)
-                .Subscribe(_ => GotoToNextInteraction());
+            interaction.Events.Subscribe(_interactionEventObserver);
         }
     }
 }
