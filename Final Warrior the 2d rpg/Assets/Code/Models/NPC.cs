@@ -14,7 +14,7 @@ public class NPC : Character
     public CharacterInteraction Interaction { get; set; }
     private CharacterInteraction _currentInteraction { get; set; }
     private IDisposable _currentInteractionSubscription;
-    private ISubject<CharacterInteractionEvent> _interactionEvents = new Subject<CharacterInteractionEvent>();
+    private Subject<CharacterInteractionEvent> _interactionEvents = new Subject<CharacterInteractionEvent>();
     private IObserver<CharacterInteractionEvent> _interactionEventObserver => _interactionEvents;
 
 
@@ -48,6 +48,10 @@ public class NPC : Character
     public void Interact(Vector3 sourceCoordinates)
     {
         SetDirection(GetDirection(sourceCoordinates - coordinates));
+
+        if (_currentInteraction == null)
+            _currentInteraction = Interaction;
+
         _currentInteraction?.Interact();
     }
 
@@ -60,16 +64,25 @@ public class NPC : Character
         else
         {
             _currentInteraction = _currentInteraction.NextInteraction;
-            _currentInteraction?.Interact();
         }
+
+        SubscribeToInteractionEvents(_currentInteraction);
+        _currentInteraction?.Interact();
+    }
+
+    public void InitializeInteractions()
+    {
+        _currentInteraction = Interaction;
+        SubscribeToInteractionEvents(_currentInteraction);
     }
     public void SubscribeToInteractionEvents(CharacterInteraction interaction)
     {
-        _currentInteractionSubscription?.Dispose();
+        //_currentInteractionSubscription?.Dispose();
         if (interaction != null)
         {
             _currentInteractionSubscription = interaction.Events.Subscribe(_interactionEventObserver);
             _interactionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
+                .Take(1)
                 .Subscribe(_ => GotoToNextInteraction());
         }
     }

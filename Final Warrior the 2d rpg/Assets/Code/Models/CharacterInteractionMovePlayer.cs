@@ -12,5 +12,6 @@ public class CharacterInteractionMovePlayer : CharacterInteraction
     public override void Interact()
     {
         player.SetCoordinates(warpCoordinates);
+        EndInteraction();
     }
 }

@@ -15,6 +15,8 @@ public class InputHandler : MonoBehaviour
     public Player player { get; private set; }
     [Inject]
     public GameState _gameState { get; private set; }
+    [Inject]
+    public Dialogue _dialogue { get; private set; }
 
    // ISubject<>
 
@@ -35,7 +37,7 @@ public class InputHandler : MonoBehaviour
 
         Observable.EveryUpdate()
             .Where(x => Input.GetButtonDown("Submit"))
-            .Subscribe(_ => player.Interact());
+            .Subscribe(_ => HandleSubmit());
     }
 
     private void UpdateMovement()
@@ -47,6 +49,21 @@ public class InputHandler : MonoBehaviour
         if (movement != Vector3.zero)
         {
             player.Move(movement);
+        }
+    }
+
+    private void HandleSubmit()
+    {
+        switch (_gameState.currentState)
+        {
+            case PossibleGameStates.Map:
+                player.Interact();
+                break;
+            case PossibleGameStates.Dialogue:
+                _dialogue.AdvanceDialogue();
+                break;
+            default:
+                break;
         }
     }
 }
