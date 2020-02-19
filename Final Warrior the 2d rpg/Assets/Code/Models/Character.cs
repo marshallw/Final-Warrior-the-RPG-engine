@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using UniRx;
 using Assets.Code.Models.Events;
+using Assets.Code.Models;
 
 public class Character
 {
@@ -17,6 +18,8 @@ public class Character
     public event Action<Vector3> GetCoordinates;
     public event Func<Vector3, bool> CheckForCollision;
     public event Action<int> OnChangeDirection;
+    private Inventory _inventory { get; set; }
+    public Inventory Inventory { get { return _inventory; } }
 
     protected ISubject<CharacterEvent> _characterEvents = new Subject<CharacterEvent>();
     public IObservable<CharacterEvent> CharacterEvents => _characterEvents;
