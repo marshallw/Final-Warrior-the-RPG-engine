@@ -13,7 +13,6 @@ public class NPC : Character
     public AI movementAi { get; set; }
     public CharacterInteraction Interaction { get; set; }
     private CharacterInteraction _currentInteraction { get; set; }
-    private IDisposable _currentInteractionSubscription;
     private Subject<CharacterInteractionEvent> _interactionEvents = new Subject<CharacterInteractionEvent>();
     private IObserver<CharacterInteractionEvent> _interactionEventObserver => _interactionEvents;
 
@@ -79,7 +78,7 @@ public class NPC : Character
             interaction = interaction.NextInteraction;
         }
         _interactionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
-    .Subscribe(_ => GotoToNextInteraction());
+                          .Subscribe(_ => GotoToNextInteraction());
     }
     public void SubscribeToInteractionEvents(CharacterInteraction interaction)
     {
