@@ -14,26 +14,40 @@ public class CharacterInteractionTalk : CharacterInteraction
     public GameState _gameState { get; private set; }
     [Inject]
     public Dialogue _dialogue { get; private set; }
-    public string[] TalkText = new string[] { };
     public string Name;
+    public Sprite Portrait;
+    public string[] TalkText = new string[] { };
     private ISubject<DialogueEvent> _dialogueEvents = new Subject<DialogueEvent>();
     public IObserver<DialogueEvent> DialogueEventsObserver => _dialogueEvents;
+    private IDisposable _dialogueDisposable;
+    private IDisposable _dialogueDisposable2;
 
     [Inject]
     public void Initialize(Dialogue dialogue)
     {
         Events.Subscribe(dialogue.CharacterEventsObserver);
-        _dialogue.DialogueEventsObservable.Subscribe(DialogueEventsObserver);
-        _dialogueEvents.OfType<DialogueEvent, DialogueEndedEvent>().Subscribe(_ => EndInteraction());
-
     }
 
     public CharacterInteractionTalk()
     {
     }
+
+    private void ConnectToDialogueEvents()
+    {
+        _dialogueDisposable = _dialogue.DialogueEventsObservable.Subscribe(DialogueEventsObserver);
+        _dialogueDisposable2 = _dialogueEvents.OfType<DialogueEvent, DialogueEndedEvent>().Subscribe(_ => EndCharacterTalkInteraction());
+    }
+
+    private void EndCharacterTalkInteraction()
+    {
+        _dialogueDisposable.Dispose();
+        _dialogueDisposable2.Dispose();
+        EndInteraction();
+    }
     public override void Interact()
     {
-            _characterInteractionEvents.OnNext(new CharacterInteractionTalkEvent(Name, TalkText));
+        ConnectToDialogueEvents();
+        _characterInteractionEvents.OnNext(new CharacterInteractionTalkEvent(Name, TalkText, Portrait));
     }
 
 }

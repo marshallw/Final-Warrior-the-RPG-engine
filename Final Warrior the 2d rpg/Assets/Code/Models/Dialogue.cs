@@ -23,11 +23,12 @@ public class Dialogue
     private Queue<string> _dialogueText { get; set; }
     private string _name { get; set; }
     private Queue<char> _dialogueLeftQueue { get; set; }
+    private Sprite portrait { get; set; }
     private string _dialogueFromQueue { get; set; }
 
     public Dialogue()
     {
-        _characterEvents.OfType<CharacterInteractionEvent, CharacterInteractionTalkEvent>().Subscribe(_ => StartDialogue(_.Name, _.DialogueText));
+        _characterEvents.OfType<CharacterInteractionEvent, CharacterInteractionTalkEvent>().Subscribe(_ => StartDialogue(_.Name, _.DialogueText, _.Portrait));
 
         _dialogueSpeed = 0.1f;
         _dialogueLeftQueue = new Queue<char>();
@@ -35,10 +36,16 @@ public class Dialogue
 
     public void StartDialogue(string name, string[] DialogueText)
     {
+        StartDialogue(name, DialogueText, null);
+    }
+
+    public void StartDialogue(string name, string [] DialogueText, Sprite Portrait)
+    {
         _gameState.currentState = PossibleGameStates.Dialogue;
 
         _name = name;
         _dialogueText = new Queue<string>(DialogueText);
+        portrait = Portrait;
         _dialogueEvents.OnNext(new DialogueStartEvent());
 
         PushNextDialogueString();
@@ -87,7 +94,7 @@ public class Dialogue
 
     private void UpdateDialogue()
     {
-        _dialogueEvents.OnNext(new PushDialogueEvent(_name, _dialogueFromQueue));
+        _dialogueEvents.OnNext(new PushDialogueEvent(_name, _dialogueFromQueue, portrait));
     }
 
     private void GetRestOfDialogueFromQueue()

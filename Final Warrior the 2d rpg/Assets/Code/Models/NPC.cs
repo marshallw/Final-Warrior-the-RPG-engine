@@ -13,8 +13,8 @@ public class NPC : Character
     public AI movementAi { get; set; }
     public CharacterInteraction Interaction { get; set; }
     private CharacterInteraction _currentInteraction { get; set; }
-    private Subject<CharacterInteractionEvent> _interactionEvents = new Subject<CharacterInteractionEvent>();
-    private IObserver<CharacterInteractionEvent> _interactionEventObserver => _interactionEvents;
+    private Subject<CharacterInteractionEvent> _characterInteractionEvents = new Subject<CharacterInteractionEvent>();
+    private IObserver<CharacterInteractionEvent> _interactionEventObserver => _characterInteractionEvents;
 
 
     [Inject]
@@ -77,7 +77,7 @@ public class NPC : Character
             SubscribeToInteractionEvents(interaction);
             interaction = interaction.NextInteraction;
         }
-        _interactionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
+        _characterInteractionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
                           .Subscribe(_ => GotoToNextInteraction());
     }
     public void SubscribeToInteractionEvents(CharacterInteraction interaction)

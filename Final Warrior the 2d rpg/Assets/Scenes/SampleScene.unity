@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1951,6 +1951,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 315197776}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &143793861 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8408356277694934361, guid: aec40b086c7abec488e7666e460a0a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 315197776}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &143793864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2066,6 +2072,11 @@ PrefabInstance:
       propertyPath: movementAi
       value: 
       objectReference: {fileID: 143793864}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 143793861}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2159,11 +2170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 365729998}
+  Name: Howard
+  Portrait: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
+    type: 3}
   TalkText:
   - Oh hi Mark.
   - Hi Jonny what's wrong?
   - I don't want to talk about it.  Begone!
-  Name: Howard
 --- !u!114 &365729998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,6 +2191,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 0}
   warpCoordinates: {x: 10, y: 10, z: 0}
+--- !u!95 &365730000 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8408356277694934361, guid: aec40b086c7abec488e7666e460a0a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8408356277362767253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &462072251
 GameObject:
   m_ObjectHideFlags: 0
@@ -10452,6 +10471,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1648456942}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &516899887 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8408356277694934361, guid: aec40b086c7abec488e7666e460a0a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1648456942}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &516899890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10666,6 +10691,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189d2dd3088e79a44aa131533eda9d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &600958681 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2846443821289612401, guid: 58b8d5a62607d594dab5abfcec3e8edb,
+    type: 3}
+  m_PrefabInstance: {fileID: 2846443821854835369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &600958684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22299,6 +22330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 670619071}
+  Portrait: {fileID: 0}
 --- !u!95 &670619071 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6701833696629211628, guid: 483a9069627214a4bbe9958bd430db02,
@@ -22317,13 +22349,14 @@ GameObject:
   - component: {fileID: 700097100}
   - component: {fileID: 700097099}
   - component: {fileID: 700097098}
+  - component: {fileID: 700097102}
   m_Layer: 5
   m_Name: DialogueCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &700097098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22405,6 +22438,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &700097102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700097097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a7dc2edee0f464595917bd78d70467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialoguePanel: {fileID: 700097097}
+  PortraitPanel: {fileID: 601543369}
+  Portrait: {fileID: 804312442}
+  NameText: {fileID: 2092105046}
+  DialogueText: {fileID: 1602173765}
 --- !u!1 &804312440
 GameObject:
   m_ObjectHideFlags: 0
@@ -22455,7 +22505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -22494,7 +22544,12 @@ PrefabInstance:
         type: 3}
       propertyPath: characterInteraction
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1164457561}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1164457557}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22563,6 +22618,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1698015590}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &976547284 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8408356277694934361, guid: aec40b086c7abec488e7666e460a0a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1698015590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &976547287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22581,6 +22642,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 903223531}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1164457557 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8408356277694934361, guid: aec40b086c7abec488e7666e460a0a2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 903223531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1164457560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22593,6 +22660,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189d2dd3088e79a44aa131533eda9d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1164457561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164457555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f1167a4581aec44921452b5ec3fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 1164457562}
+  Name: 
+  Portrait: {fileID: 0}
+  TalkText:
+  - My name is Dick, but I don't have a name or a portrait.  This makes me sad.  Do
+    you think I'll ever get a name or a portrait?
+--- !u!114 &1164457562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164457555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f1167a4581aec44921452b5ec3fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 0}
+  Name: Cloud
+  Portrait: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
+    type: 3}
+  TalkText:
+  - Maybe if you were a main character.
 --- !u!1001 &1209517738
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22605,6 +22708,11 @@ PrefabInstance:
       propertyPath: characterInteraction
       value: 
       objectReference: {fileID: 1209517740}
+    - target: {fileID: 2342653686956563274, guid: 483a9069627214a4bbe9958bd430db02,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1209517742}
     - target: {fileID: 6701833696629211626, guid: 483a9069627214a4bbe9958bd430db02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22698,6 +22806,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 0}
   SceneName: SampleScene
+--- !u!95 &1209517742 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6701833696629211628, guid: 483a9069627214a4bbe9958bd430db02,
+    type: 3}
+  m_PrefabInstance: {fileID: 1209517738}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1261975486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2846443821289612415, guid: 58b8d5a62607d594dab5abfcec3e8edb,
@@ -22716,6 +22830,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189d2dd3088e79a44aa131533eda9d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1261975489 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2846443821289612401, guid: 58b8d5a62607d594dab5abfcec3e8edb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1859401633}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1261975492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24163,7 +24283,6 @@ GameObject:
   - component: {fileID: 1575663128}
   - component: {fileID: 1575663130}
   - component: {fileID: 1575663129}
-  - component: {fileID: 1575663131}
   m_Layer: 5
   m_Name: DialoguePanel
   m_TagString: Untagged
@@ -24228,21 +24347,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575663127}
   m_CullTransparentMesh: 0
---- !u!114 &1575663131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575663127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12a7dc2edee0f464595917bd78d70467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialoguePanel: {fileID: 1575663127}
-  NameText: {fileID: 2092105046}
-  DialogueText: {fileID: 1602173765}
 --- !u!1 &1602173763
 GameObject:
   m_ObjectHideFlags: 0
@@ -24277,8 +24381,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 32, y: -48}
-  m_SizeDelta: {x: 999, y: 161.2}
+  m_AnchoredPosition: {x: 32, y: -70}
+  m_SizeDelta: {x: 870, y: 161.2}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1602173765
 MonoBehaviour:
@@ -24299,7 +24403,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 5f299062dc3b1c04cbdeac4581d6caa6, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
@@ -24332,6 +24436,11 @@ PrefabInstance:
       propertyPath: movementAi
       value: 
       objectReference: {fileID: 516899890}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 516899887}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24406,6 +24515,11 @@ PrefabInstance:
       propertyPath: movementAi
       value: 
       objectReference: {fileID: 976547287}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 976547284}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24540,6 +24654,11 @@ PrefabInstance:
       propertyPath: characterInteraction
       value: 
       objectReference: {fileID: 1261975492}
+    - target: {fileID: 2846443821289612414, guid: 58b8d5a62607d594dab5abfcec3e8edb,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1261975489}
     - target: {fileID: 2846443821289612415, guid: 58b8d5a62607d594dab5abfcec3e8edb,
         type: 3}
       propertyPath: m_Name
@@ -24664,7 +24783,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 5f299062dc3b1c04cbdeac4581d6caa6, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
@@ -24757,6 +24876,11 @@ PrefabInstance:
       propertyPath: characterInteraction
       value: 
       objectReference: {fileID: 600958684}
+    - target: {fileID: 2846443821289612414, guid: 58b8d5a62607d594dab5abfcec3e8edb,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 600958681}
     - target: {fileID: 2846443821289612415, guid: 58b8d5a62607d594dab5abfcec3e8edb,
         type: 3}
       propertyPath: m_Name
@@ -24862,6 +24986,17 @@ PrefabInstance:
       propertyPath: characterInteraction
       value: 
       objectReference: {fileID: 365729997}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: Portrait
+      value: 
+      objectReference: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
+        type: 3}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 365730000}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24921,6 +25056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8408356277694934366, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aec40b086c7abec488e7666e460a0a2f, type: 3}

@@ -9,6 +9,7 @@ public class CharacterPresenter : MonoBehaviour
 {
     protected event Action UpdateLocation;
     public Animator animator;
+    public Sprite Portrait;
     protected bool _isMoving = false;
 
     protected ISubject<CharacterEvent> _characterEvents = new Subject<CharacterEvent>();
@@ -42,6 +43,7 @@ public class CharacterPresenter : MonoBehaviour
             };
 
         actor.CheckForCollision += map.Collision;
+        actor.Portrait = Portrait;
     }
 
     protected void ToggleMovementAnimation(bool isMoving)

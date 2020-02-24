@@ -14,6 +14,7 @@ public class Character
     protected bool _isMoving { get; set; }
     protected DirectionEnum direction { get; set; }
     private static float movementSpeed = 4.0f;
+    public Sprite Portrait { get; set; }
 
     public event Action<Vector3> GetCoordinates;
     public event Func<Vector3, bool> CheckForCollision;
