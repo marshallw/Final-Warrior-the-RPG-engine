@@ -5,7 +5,7 @@ using UniRx;
 using Assets.Code.Models.Events;
 using System;
 
-public abstract class CharacterInteraction: MonoBehaviour
+public abstract class CharacterInteraction : MonoBehaviour
 {
     protected ISubject<CharacterEvent> _characterEvents;
     protected ISubject<CharacterInteractionEvent> _characterInteractionEvents = new Subject<CharacterInteractionEvent>();
@@ -13,7 +13,7 @@ public abstract class CharacterInteraction: MonoBehaviour
     public IObservable<CharacterInteractionEvent> Events => _characterInteractionEvents;
     public IObserver<CharacterInteractionEvent> CharacterInteractionEventsOberver => _characterInteractionEvents;
     public abstract void Interact();
-    public CharacterInteraction NextInteraction;
+    public virtual CharacterInteraction NextInteraction { get; set;}
 
     public void EndInteraction()
     {

@@ -10,6 +10,7 @@ namespace Assets.Code.Models
     public class GameState
     {
         public PossibleGameStates currentState;
+        public Dictionary<string, int> _temporaryGameVariables { get; set; }
 
         public GameState()
         {
@@ -19,6 +20,22 @@ namespace Assets.Code.Models
         public GameState(PossibleGameStates startingState)
         {
             currentState = startingState;
+        }
+
+        public void AddOrSetGameVariable(string name, int value)
+        {
+            if (_temporaryGameVariables.ContainsKey(name))
+                _temporaryGameVariables[name] = value;
+            else
+                _temporaryGameVariables.Add(name, value);
+        }
+
+        public int GetOrAddGameVariable(string name)
+        {
+            if (!_temporaryGameVariables.ContainsKey(name))
+                _temporaryGameVariables.Add(name, 0);
+
+            return _temporaryGameVariables[name];
         }
     }
 }
