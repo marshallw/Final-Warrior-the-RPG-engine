@@ -15,11 +15,13 @@ namespace Assets.Code.Models
         public GameState()
         {
             currentState = PossibleGameStates.Map;
+            _temporaryGameVariables = new Dictionary<string, int>();
         }
 
         public GameState(PossibleGameStates startingState)
         {
             currentState = startingState;
+            _temporaryGameVariables = new Dictionary<string, int>();
         }
 
         public void AddOrSetGameVariable(string name, int value)

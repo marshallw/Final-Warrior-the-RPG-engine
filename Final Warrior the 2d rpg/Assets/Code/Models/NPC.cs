@@ -62,7 +62,7 @@ public class NPC : Character
         }
         else
         {
-            _currentInteraction = _currentInteraction.NextInteraction;
+            _currentInteraction = _currentInteraction.GetNextInteraction;
         }
 
         _currentInteraction?.Interact();
@@ -70,15 +70,22 @@ public class NPC : Character
 
     public void InitializeInteractions()
     {
+        Initializeinteraction(Interaction);
         _currentInteraction = Interaction;
-        var interaction = Interaction;
-        while(interaction != null)
-        {
-            SubscribeToInteractionEvents(interaction);
-            interaction = interaction.NextInteraction;
-        }
         _characterInteractionEvents.OfType<CharacterInteractionEvent, CharacterInteractionEndedEvent>()
                           .Subscribe(_ => GotoToNextInteraction());
+    }
+
+    public void Initializeinteraction(CharacterInteraction interaction)
+    {
+        if (interaction != null)
+        {
+            SubscribeToInteractionEvents(interaction);
+            foreach (var nextInteraction in interaction.GetAllCharacterInteractions)
+            {
+                Initializeinteraction(nextInteraction);
+            }
+        }
     }
     public void SubscribeToInteractionEvents(CharacterInteraction interaction)
     {

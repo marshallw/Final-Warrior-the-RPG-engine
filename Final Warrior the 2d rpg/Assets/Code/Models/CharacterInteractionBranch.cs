@@ -37,14 +37,14 @@ namespace Assets.Code.Models
             return null;
         }
 
-        public override CharacterInteraction NextInteraction 
-        { 
+        public override CharacterInteraction GetNextInteraction
+        {
             get
-            { 
-                return GetNextInteractionFromBranch(); 
-            } 
-            
-            set => base.NextInteraction = value; 
+            {
+                return GetNextInteractionFromBranch();
+            }
         }
+
+        public override CharacterInteraction[] GetAllCharacterInteractions {get {return branchingCharacterInteractions;} }
     }
 }

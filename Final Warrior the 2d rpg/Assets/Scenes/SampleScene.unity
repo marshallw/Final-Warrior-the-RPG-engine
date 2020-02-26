@@ -1969,6 +1969,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189d2dd3088e79a44aa131533eda9d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &143793865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143793859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f1167a4581aec44921452b5ec3fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 0}
+  Name: David
+  Portrait: {fileID: 0}
+  TalkText:
+  - Annoying, huh?
+--- !u!114 &143793866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143793859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f1167a4581aec44921452b5ec3fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 0}
+  Name: David
+  Portrait: {fileID: 0}
+  TalkText:
+  - You should talk to the guy who wants a portrait.
+--- !u!114 &143793867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143793859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8daa56d56c2429f49889595c825d96f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 0}
+  branchingVariableName: TalkToMainCharacterGuy
+  branchingVariableValues: 0000000001000000
+  branchingCharacterInteractions:
+  - {fileID: 143793866}
+  - {fileID: 143793865}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -2077,6 +2129,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 143793861}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: characterInteraction
+      value: 
+      objectReference: {fileID: 143793867}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22690,12 +22747,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f1167a4581aec44921452b5ec3fc61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextInteraction: {fileID: 0}
+  NextInteraction: {fileID: 1164457563}
   Name: Cloud
   Portrait: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
     type: 3}
   TalkText:
   - Maybe if you were a main character.
+--- !u!114 &1164457563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164457555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 569983469526aac45a08ead18d34efbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 0}
+  VariableName: TalkToMainCharacterGuy
+  VariableValue: 1
 --- !u!1001 &1209517738
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -26,11 +26,6 @@ public class DialoguePresenter : MonoBehaviour
     }
     public void PushDialogue(string name, string dialogue, Sprite portrait)
     {
-        if (string.IsNullOrEmpty(name))
-        {
-            name = "???";
-        }
-
         NameText.text = name;
         DialogueText.text = dialogue;
 
