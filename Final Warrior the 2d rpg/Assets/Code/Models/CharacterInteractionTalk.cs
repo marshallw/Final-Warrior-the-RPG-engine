@@ -14,9 +14,7 @@ public class CharacterInteractionTalk : CharacterInteraction
     public GameState _gameState { get; private set; }
     [Inject]
     public Dialogue _dialogue { get; private set; }
-    public string Name;
-    public Sprite Portrait;
-    public string[] TalkText = new string[] { };
+    public DialogueItem[] _dialogueItems;
     private ISubject<DialogueEvent> _dialogueEvents = new Subject<DialogueEvent>();
     public IObserver<DialogueEvent> DialogueEventsObserver => _dialogueEvents;
     private IDisposable _dialogueDisposable;
@@ -46,8 +44,11 @@ public class CharacterInteractionTalk : CharacterInteraction
     }
     public override void Interact()
     {
-        ConnectToDialogueEvents();
-        _characterInteractionEvents.OnNext(new CharacterInteractionTalkEvent(Name, TalkText, Portrait));
+        if (_dialogueItems.Length > 0)
+        {
+            ConnectToDialogueEvents();
+            _characterInteractionEvents.OnNext(new CharacterInteractionTalkEvent(_dialogueItems));
+        }
     }
 
 }

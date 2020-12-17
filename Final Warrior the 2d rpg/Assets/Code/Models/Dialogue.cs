@@ -20,32 +20,25 @@ public class Dialogue
     private IDisposable _timerSubscription;
     private float _dialogueSpeed;
 
-    private Queue<string> _dialogueText { get; set; }
-    private string _name { get; set; }
+    private Queue<DialogueItem> _dialogueItems { get; set; }
     private Queue<char> _dialogueLeftQueue { get; set; }
-    private Sprite portrait { get; set; }
     private string _dialogueFromQueue { get; set; }
+    private string _name { get; set; }
+    private Sprite _portrait { get; set; }
 
     public Dialogue()
     {
-        _characterEvents.OfType<CharacterInteractionEvent, CharacterInteractionTalkEvent>().Subscribe(_ => StartDialogue(_.Name, _.DialogueText, _.Portrait));
+        _characterEvents.OfType<CharacterInteractionEvent, CharacterInteractionTalkEvent>().Subscribe(_ => StartDialogue(_.DialogueItems));
 
         _dialogueSpeed = 0.1f;
         _dialogueLeftQueue = new Queue<char>();
     }
 
-    public void StartDialogue(string name, string[] DialogueText)
-    {
-        StartDialogue(name, DialogueText, null);
-    }
-
-    public void StartDialogue(string name, string [] DialogueText, Sprite Portrait)
+    public void StartDialogue(DialogueItem[] dialogueItems)
     {
         _gameState.currentState = PossibleGameStates.Dialogue;
 
-        _name = name;
-        _dialogueText = new Queue<string>(DialogueText);
-        portrait = Portrait;
+        _dialogueItems = new Queue<DialogueItem>(dialogueItems);
         _dialogueEvents.OnNext(new DialogueStartEvent());
 
         PushNextDialogueString();
@@ -53,7 +46,6 @@ public class Dialogue
 
     public void EndDialogue()
     {
-        _name = "";
         _gameState.currentState = PossibleGameStates.Map;
         _dialogueEvents.OnNext(new DialogueEndedEvent());
     }
@@ -64,7 +56,7 @@ public class Dialogue
         {
             GetRestOfDialogueFromQueue();
         }
-        else if (_dialogueText.Count == 0)
+        else if (_dialogueItems.Count == 0)
         {
             EndDialogue();
         }
@@ -76,7 +68,11 @@ public class Dialogue
 
     public void PushNextDialogueString()
     {
-        _dialogueLeftQueue = new Queue<char>(_dialogueText.Dequeue());
+        DialogueItem currentItem = _dialogueItems.Dequeue();
+        _name = currentItem.Name;
+        _portrait = currentItem.Portrait;
+
+        _dialogueLeftQueue = new Queue<char>(currentItem.Dialogue);
         _dialogueFromQueue = "";
         _timerSubscription = Observable.Interval(TimeSpan.FromMilliseconds(10)).Subscribe(_ => GetNextCharacterFromQueue());
     }
@@ -94,7 +90,7 @@ public class Dialogue
 
     private void UpdateDialogue()
     {
-        _dialogueEvents.OnNext(new PushDialogueEvent(_name, _dialogueFromQueue, portrait));
+        _dialogueEvents.OnNext(new PushDialogueEvent(_name, _dialogueFromQueue, _portrait));
     }
 
     private void GetRestOfDialogueFromQueue()

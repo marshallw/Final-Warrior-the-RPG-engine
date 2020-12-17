@@ -10,34 +10,16 @@ namespace Assets.Code.Models
     public class GameState
     {
         public PossibleGameStates currentState;
-        public Dictionary<string, int> _temporaryGameVariables { get; set; }
+        public GameSettings TemporaryGameSettings { get; private set; }
 
-        public GameState()
+        public GameState(): this(PossibleGameStates.Map)
         {
-            currentState = PossibleGameStates.Map;
-            _temporaryGameVariables = new Dictionary<string, int>();
         }
 
         public GameState(PossibleGameStates startingState)
         {
             currentState = startingState;
-            _temporaryGameVariables = new Dictionary<string, int>();
-        }
-
-        public void AddOrSetGameVariable(string name, int value)
-        {
-            if (_temporaryGameVariables.ContainsKey(name))
-                _temporaryGameVariables[name] = value;
-            else
-                _temporaryGameVariables.Add(name, value);
-        }
-
-        public int GetOrAddGameVariable(string name)
-        {
-            if (!_temporaryGameVariables.ContainsKey(name))
-                _temporaryGameVariables.Add(name, 0);
-
-            return _temporaryGameVariables[name];
+            TemporaryGameSettings = new GameSettings();
         }
     }
 }

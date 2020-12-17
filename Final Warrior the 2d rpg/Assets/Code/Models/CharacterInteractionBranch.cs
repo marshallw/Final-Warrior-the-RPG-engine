@@ -21,10 +21,10 @@ namespace Assets.Code.Models
 
         private CharacterInteraction GetNextInteractionFromBranch()
         {
-            int branchingValue = _gameState.GetOrAddGameVariable(branchingVariableName);
-
             if (branchingVariableValues.Length != branchingCharacterInteractions.Length)
                 throw new Exception("number of values should match number of interactions you can branch with.");
+
+            int branchingValue = _gameState.TemporaryGameSettings.GetOrAdd(branchingVariableName);
 
             for (int index = 0; index < branchingVariableValues.Length; index++)
             {

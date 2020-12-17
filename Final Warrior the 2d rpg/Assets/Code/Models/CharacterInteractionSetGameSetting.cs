@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Assets.Code.Models
 {
-    public class CharacterInteractionSetVariable : CharacterInteraction
+    public class CharacterInteractionSetGameSetting : CharacterInteraction
     {
         [Inject]
         private GameState _gameState;
@@ -16,7 +16,7 @@ namespace Assets.Code.Models
 
         public override void Interact()
         {
-            _gameState.AddOrSetGameVariable(VariableName, VariableValue);
+            _gameState.TemporaryGameSettings.SetOrAdd(VariableName, VariableValue);
         }
     }
 }

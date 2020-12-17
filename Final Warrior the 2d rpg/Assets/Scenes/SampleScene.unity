@@ -1982,10 +1982,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 0}
-  Name: David
-  Portrait: {fileID: 0}
-  TalkText:
-  - Annoying, huh?
+  _dialogueItems:
+  - Portrait: {fileID: 0}
+    Dialogue: This is what I say.
+    Name: Jebediah
 --- !u!114 &143793866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1999,10 +1999,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 0}
-  Name: David
-  Portrait: {fileID: 0}
-  TalkText:
-  - You should talk to the guy who wants a portrait.
+  _dialogueItems:
+  - Portrait: {fileID: 0}
+    Dialogue: Now I say something else.
+    Name: JEbediah
 --- !u!114 &143793867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2227,13 +2227,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 365729998}
-  Name: Howard
-  Portrait: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
-    type: 3}
-  TalkText:
-  - Oh hi Mark.
-  - Hi Jonny what's wrong?
-  - I don't want to talk about it.  Begone!
+  _dialogueItems:
+  - Portrait: {fileID: 0}
+    Dialogue: HI
+    Name: Bob
 --- !u!114 &365729998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10546,6 +10543,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189d2dd3088e79a44aa131533eda9d06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &516899891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516899885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2f1167a4581aec44921452b5ec3fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextInteraction: {fileID: 0}
+  _dialogueItems: []
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -22730,11 +22741,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 1164457562}
-  Name: 
-  Portrait: {fileID: 0}
-  TalkText:
-  - My name is Dick, but I don't have a name or a portrait.  This makes me sad.  Do
-    you think I'll ever get a name or a portrait?
+  _dialogueItems:
+  - Portrait: {fileID: 0}
+    Dialogue: Can I get my own portrait?
+    Name: Bill
 --- !u!114 &1164457562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22748,11 +22758,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextInteraction: {fileID: 1164457563}
-  Name: Cloud
-  Portrait: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
-    type: 3}
-  TalkText:
-  - Maybe if you were a main character.
+  _dialogueItems:
+  - Portrait: {fileID: 2697042648937513654, guid: 9da38ad3c63b26c48af0db2e3fa8609f,
+      type: 3}
+    Dialogue: Sorry, we only have 64 KB of ram.
+    Name: You
 --- !u!114 &1164457563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24513,6 +24523,11 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 516899887}
+    - target: {fileID: 5370429158206850399, guid: aec40b086c7abec488e7666e460a0a2f,
+        type: 3}
+      propertyPath: characterInteraction
+      value: 
+      objectReference: {fileID: 516899891}
     - target: {fileID: 8408356277694934363, guid: aec40b086c7abec488e7666e460a0a2f,
         type: 3}
       propertyPath: m_LocalPosition.x
